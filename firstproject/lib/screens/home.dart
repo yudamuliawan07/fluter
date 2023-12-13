@@ -8,7 +8,7 @@ class Home extends StatelessWidget {
     return Scaffold(
 
       appBar: AppBar(
-        leading: IconButton(icon: Icon(Icons.menu), onPressed: (){},),
+        leading:  IconButton(icon:   Icon(Icons.menu), onPressed: (){},),
         title: Text("Home"),
         actions: [
           IconButton(icon: Icon(Icons.shopping_cart), onPressed: (){},),
@@ -23,20 +23,54 @@ class Home extends StatelessWidget {
         ),
 
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-             Image(image: AssetImage("images/logo.png"),
-                fit: BoxFit.cover
-            ),
-            Text("Example", style: TextStyle(fontSize: 40, color: Colors.green),),
-            Text("Data", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.purple),)
-          ],
-        ),
+      body: Container(
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Expanded(child: Image(image: AssetImage("images/logo.png"), width: 150,)),
+                  Expanded(flex: 2, child: Image(image: AssetImage("images/logo.png"), width: 150,)),
+                  Expanded(flex: 4,child: Image(image: AssetImage("images/logo.png"), width: 150,)),
 
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.star),
+                  Icon(Icons.star),
+                  Icon(Icons.star_border),
+                  Icon(Icons.star_border),
+                  Icon(Icons.star_border),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
+                children: [
+                  Column(
+                      children: [
+                        Icon(Icons.phone, size: 35.0,),
+                        Text("Phone")
+                      ],
+                  ),
+                  Column(
+                    children: [
+                      Icon(Icons.alt_route, size: 35.0,),
+                      Text("Route")
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Icon(Icons.share, size: 35.0,),
+                      Text("Share")
+                    ],
+                  ),
 
+                ],
+              ),
+            ],
+          ),
       ),
     );
   }
