@@ -6,33 +6,37 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("Lets Begin"),
-              Icon(Icons.add_shopping_cart_outlined),
-            ],
-          ),
-          // icon: Icon(Icons.add_shopping_cart_outlined),
-          // label: Text("Let's Begin"),
-          // onPressed: null,
-          onPressed: () {},
-          style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.all(20.0),
-              fixedSize: const Size(300, 80),
-              textStyle:
-                  const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-              primary: Colors.yellow,
-              onPrimary: Colors.black87,
-              elevation: 15,
-              shadowColor: Colors.yellow,
-              side: BorderSide(color: Colors.black87, width: 2),
-              shape: StadiumBorder(),
 
-          ),
+      appBar: AppBar(
+        leading: IconButton(icon: Icon(Icons.menu), onPressed: (){},),
+        title: Text("Home"),
+        actions: [
+          IconButton(icon: Icon(Icons.shopping_cart), onPressed: (){},),
+          IconButton(icon: Icon(Icons.search), onPressed: (){},),
+          IconButton(icon: Icon(Icons.menu_book), onPressed: (){},),
+        ],
+        elevation: 0,
+        // titleSpacing: 40.0,
+        backgroundColor: Colors.grey,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(20))
         ),
+
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+             Image(image: AssetImage("images/logo.png"),
+                fit: BoxFit.cover
+            ),
+            Text("Example", style: TextStyle(fontSize: 40, color: Colors.green),),
+            Text("Data", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.purple),)
+          ],
+        ),
+
+
+
       ),
     );
   }
