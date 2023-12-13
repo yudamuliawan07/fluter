@@ -1,26 +1,20 @@
 import 'screens/home.dart';
-
-import 'screens/Dashboard.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(
-    const Myapp()
-  );
+  runApp(MyApp());
 }
 
-class Myapp extends StatelessWidget {
-  const Myapp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-
+    return MaterialApp(
       title: "My Flutter App",
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
-      home: Home()
+      home: Home(),
     );
   }
 }
-

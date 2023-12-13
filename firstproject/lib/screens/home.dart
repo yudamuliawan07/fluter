@@ -1,45 +1,29 @@
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
-  const Home({super.key});
+  Home({Key? key}) : super(key: key);
+
+  List<String> product = ["Bed", "Kasur", "Kuda"];
+  List<String> productDetails = ["Bed is good", "Kasur is nice", "Kuda is strong"];
+  List<int> price = [1126, 2234, 2234];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: ListView(
-          itemExtent: 100.0,
-          reverse: false,
-          scrollDirection: Axis.vertical,
-          shrinkWrap: true,
-          children: [
-            ListTile(
-              trailing: Icon(Icons.add),
-            ),
-            ListTile(
-              leading: CircleAvatar(child: Icon(Icons.alarm_on_sharp),backgroundColor: Colors.black12,),
-              title: Text("Sales"),
-              subtitle: Text("Sales of the waek"),
-              trailing: Text("350"),
-              onTap: (){},
-              tileColor: Colors.grey.shade200,
-            ),
-            ListTile(
-                leading: Icon(Icons.supervised_user_circle_outlined),
-              title: Text("Customers"),
-              subtitle: Text("Total Customer"),
-              trailing: Text("20"),
-            ),
-            ListTile(
-              leading: Icon(Icons.alarm_on_sharp),
-              title: Text("Profit"),
-              subtitle: Text("Profit of the waek"),
-              trailing: Text("20000"),
-            ),
-          ],
+        child: ListView.builder(
+          itemCount: product.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+
+              leading: CircleAvatar(child: Text(product[index][0]), backgroundColor: Colors.blue.shade200,),
+              title: Text(product[index]),
+              subtitle: Text(productDetails[index]),
+              trailing: Text(price[index].toString()),
+            );
+          },
         ),
       ),
-
     );
   }
 }
