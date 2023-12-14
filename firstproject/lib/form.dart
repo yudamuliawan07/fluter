@@ -2,8 +2,6 @@ import 'package:firstproject/detail.dart';
 import 'package:firstproject/widget/my_radio.dart';
 import 'package:flutter/material.dart';
 
-
-
 class MyForm extends StatefulWidget {
   const MyForm({super.key});
 
@@ -12,12 +10,17 @@ class MyForm extends StatefulWidget {
 }
 
 class _MyFormState extends State<MyForm> {
+  _MyFormState(){
+    _selectedVal = _productSizesList[0];
+  }
   final _productController = TextEditingController();
 
-  bool? _checkBox,
-      _listilecheckbox = false;
+  bool? _checkBox, _listilecheckbox = false;
 
   ProductTypeEnum? _productTypeEnum;
+
+  final _productSizesList = ["Small", "Medium", "Large", "Xlarge"];
+  String? _selectedVal = "";
 
   @override
   void dispose() {
@@ -68,10 +71,10 @@ class _MyFormState extends State<MyForm> {
               },
               controlAffinity: ListTileControlAffinity.leading,
             ),
-
             Row(
               children: [
-                MyRadio(title: ProductTypeEnum.Deliverable.name,
+                MyRadio(
+                    title: ProductTypeEnum.Deliverable.name,
                     value: ProductTypeEnum.Deliverable,
                     selectedProductType: _productTypeEnum,
                     onChanged: (val) {
@@ -79,8 +82,11 @@ class _MyFormState extends State<MyForm> {
                         _productTypeEnum = val;
                       });
                     }),
-                SizedBox(width: 5.0,),
-                MyRadio(title: ProductTypeEnum.Downloadable.name,
+                SizedBox(
+                  width: 5.0,
+                ),
+                MyRadio(
+                    title: ProductTypeEnum.Downloadable.name,
                     value: ProductTypeEnum.Downloadable,
                     selectedProductType: _productTypeEnum,
                     onChanged: (val) {
@@ -88,10 +94,34 @@ class _MyFormState extends State<MyForm> {
                         _productTypeEnum = val;
                       });
                     }),
-
               ],
             ),
 
+
+            DropdownButtonFormField(
+              value: _selectedVal,
+              items: _productSizesList.map(
+                      (e) => DropdownMenuItem(child: Text(e), value: e,)
+
+              ).toList(),
+              onChanged: (val) {
+                setState(() {
+                  _selectedVal = val as String;
+                });
+              },
+              icon: const Icon(
+                Icons.arrow_drop_down_circle,
+                color: Colors.blue,
+              ),
+              dropdownColor: Colors.blue.shade50 ,
+              decoration: InputDecoration(
+                labelText: "Product Sizes",
+                prefixIcon: Icon(
+                  Icons.accessibility_new_rounded,
+                  color: Colors.blue,
+                ),
+              ),
+            ),
 
             SizedBox(
               height: 20.0,
