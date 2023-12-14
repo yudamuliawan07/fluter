@@ -9,22 +9,14 @@ class MyForm extends StatefulWidget {
 }
 
 class _MyFormState extends State<MyForm> {
-
-  var _productName;
-
   final _productController = TextEditingController();
 
+  bool? _checkBox, _listilecheckbox = false;
 
   @override
   void dispose() {
     _productController.dispose();
     super.dispose();
-  }
-
-  void _updateText(val){
-    setState(() {
-      _productName = _productController.text;
-    });
   }
 
   @override
@@ -38,6 +30,10 @@ class _MyFormState extends State<MyForm> {
         padding: EdgeInsets.all(20.0),
         child: ListView(
           children: [
+            const Text("Add The Product"),
+            const SizedBox(
+              height: 30.0,
+            ),
             TextFormField(
               controller: _productController,
               decoration: InputDecoration(
@@ -46,7 +42,29 @@ class _MyFormState extends State<MyForm> {
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20.0,),
+            Checkbox(
+                checkColor: Colors.white,
+                activeColor: Colors.blue,
+                tristate: true,
+                value: _checkBox,
+                onChanged: (val) {
+                  setState(() {
+                    _checkBox = val;
+                  });
+                }),
+            CheckboxListTile(
+                value: _listilecheckbox,
+                title: Text("Top Product"),
+                onChanged: (val) {
+                  setState(() {
+                    _listilecheckbox = val;
+                  });
+                },
+                controlAffinity: ListTileControlAffinity.leading,
+                ),
+            SizedBox(
+              height: 20.0,
+            ),
             myBtn(context)
           ],
         ),
@@ -56,19 +74,21 @@ class _MyFormState extends State<MyForm> {
 
   OutlinedButton myBtn(BuildContext context) {
     return OutlinedButton(
-        style: OutlinedButton.styleFrom(minimumSize: const Size(200, 50)),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) {
-              return Details(productName: _productController.text,);
-            }),
-          );
-        },
-        child: Text(
-          "Submit".toUpperCase(),
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
-      );
+      style: OutlinedButton.styleFrom(minimumSize: const Size(200, 50)),
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) {
+            return Details(
+              productName: _productController.text,
+            );
+          }),
+        );
+      },
+      child: Text(
+        "Submit".toUpperCase(),
+        style: const TextStyle(fontWeight: FontWeight.bold),
+      ),
+    );
   }
 }
