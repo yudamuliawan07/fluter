@@ -1,5 +1,8 @@
 import 'package:firstproject/detail.dart';
+import 'package:firstproject/widget/my_radio.dart';
 import 'package:flutter/material.dart';
+
+
 
 class MyForm extends StatefulWidget {
   const MyForm({super.key});
@@ -11,7 +14,10 @@ class MyForm extends StatefulWidget {
 class _MyFormState extends State<MyForm> {
   final _productController = TextEditingController();
 
-  bool? _checkBox, _listilecheckbox = false;
+  bool? _checkBox,
+      _listilecheckbox = false;
+
+  ProductTypeEnum? _productTypeEnum;
 
   @override
   void dispose() {
@@ -53,15 +59,40 @@ class _MyFormState extends State<MyForm> {
                   });
                 }),
             CheckboxListTile(
-                value: _listilecheckbox,
-                title: Text("Top Product"),
-                onChanged: (val) {
-                  setState(() {
-                    _listilecheckbox = val;
-                  });
-                },
-                controlAffinity: ListTileControlAffinity.leading,
-                ),
+              value: _listilecheckbox,
+              title: Text("Top Product"),
+              onChanged: (val) {
+                setState(() {
+                  _listilecheckbox = val;
+                });
+              },
+              controlAffinity: ListTileControlAffinity.leading,
+            ),
+
+            Row(
+              children: [
+                MyRadio(title: ProductTypeEnum.Deliverable.name,
+                    value: ProductTypeEnum.Deliverable,
+                    selectedProductType: _productTypeEnum,
+                    onChanged: (val) {
+                      setState(() {
+                        _productTypeEnum = val;
+                      });
+                    }),
+                SizedBox(width: 5.0,),
+                MyRadio(title: ProductTypeEnum.Downloadable.name,
+                    value: ProductTypeEnum.Downloadable,
+                    selectedProductType: _productTypeEnum,
+                    onChanged: (val) {
+                      setState(() {
+                        _productTypeEnum = val;
+                      });
+                    }),
+
+              ],
+            ),
+
+
             SizedBox(
               height: 20.0,
             ),
