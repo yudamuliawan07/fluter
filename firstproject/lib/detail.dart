@@ -1,19 +1,29 @@
 import 'package:flutter/material.dart';
 
 class Details extends StatelessWidget {
-  const Details({super.key});
+  Details({Key?key, required this.productName}) : super(key:key);
+
+  String productName;
 
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: Text("Detail Screen"),
+        title: Text(productName),
         leading: IconButton(onPressed: (){
           Navigator.pop(context);
         },icon: Icon(Icons.arrow_back),),
       ),
-      body: Center(
-        child: Text("This is the detail"),
+      body: Container(
+        padding: EdgeInsets.all(20.0),
+        child: ListView(
+          children: [
+            ListTile(
+              leading: Icon(Icons.access_time_rounded),
+              title: Text(productName),
+            ),
+          ],
+        ),
       ),
     );
   }
